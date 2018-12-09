@@ -1,4 +1,4 @@
-l]$ε"\d+"El¨Im4>:LÎ+x}]μ2/(›\μ~Tl}¨‡ß}¨$‹_{GL_>r}×‹Þ .. 52 bytes
+l]$ε"\d+"El¨Im4>:LÎ+x}]μ2/(›\μ~Tl}¨‡ß}¨$‹_{GL_Æ}×‹Þ .. 51 bytes
 
 {
 l]$ .. sort lines
@@ -23,7 +23,7 @@ l]$ .. sort lines
 ¨  .. flatten again
 $  .. sort (lexicographically)
 ‹_ .. the function to take the first element of a list
-{GL_>r} .. "group, take maximum by length"
+{GL_Æ} .. "group, take maximum by length"
 × .. do that twice, which works out:
   ..
   .. group (by id), take maximum by length: this leaves
