@@ -1,0 +1,12 @@
+v]Š .. 3 bytes!
+
+{ .. This delimits a block, which we'll just discard at the end.
+  .. I'll explain my Paradoc programs in the block.
+
+v .. Treat input as "values", so those that can be interpreted as
+  .. ints, will.
+] .. Collect all input values into a list.
+Š .. Compute the sum.
+  .. At program termination, the stack, which contains the sum,
+  .. is implicitly printed.
+};

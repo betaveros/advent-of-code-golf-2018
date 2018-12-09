@@ -1,0 +1,32 @@
+l¬μ"\d+"El¨Im»~\u+ßd*¨}¨$G{L(}# .. 31 bytes
+
+{
+l¬ .. get lines
+μ  .. for each line:
+  "\d+"El .. regex match runs of digits
+  ¨   .. flatten, since every list is length-1 with the entire match
+  Im  .. convert to integers
+  »   .. drop head (we don't need the first number for day 1)
+      .. We now have a list [a, b, c, d]
+      .. and we need to get [a, a+c) * [b, b+d).
+  ~   .. expand onto the stack
+  \u  .. swap underneath to get a, c, b, d
+  +ßd .. black magic... ok let's break it down: + is addition.
+      ..
+      .. ß modifies addition to get "bindmap": take the second value on
+      .. the stack and add it to every value in the first. Since the top
+      .. value on the stack is an integer and not a .. list, it is
+      .. coerced to the half-open range.
+      ..
+      .. d modifies +ß to perform it twice. After running it once and
+      .. seeing b, d popped and converted to the newly pushed list
+      .. [b, b+d), it temporarily holds that list elsewhere and runs
+      .. +ß again on the values beneath, which are a, c.
+      ..
+ *    .. Take that cartesian product
+ ¨    .. flatten once
+}
+¨     .. flatten
+$G    .. Sort and group, as always
+{L(}# .. Count groups that are > 1 length
+};

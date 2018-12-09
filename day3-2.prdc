@@ -1,0 +1,33 @@
+l¬μ"\d+"El¨Im~\u+ßd*¨\+bm}¨$«_GφL(}¨›mU$JÛg‹ .. 44 bytes!
+
+{
+l¬
+μ
+  "\d+"El¨Im .. as in level 1, but don't drop the ID
+  ~\u+ßd*¨   .. as in level 1
+  \+bm       .. append the ID to every pair
+}            .. as in level 1
+¨    .. flatten; we now have a list of [x, y, id] triples
+$«_G .. sort, group by the all-but-first slice
+φL(} .. filter for groups that are >1 length
+¨    .. flatten again, we now have a list of [x, y, id] triples
+     .. where [x, y] are not unique
+›m   .. extract the IDs
+     .. we now just need to find the first ID that doesn't appear
+U$   .. uniquify and sort
+J    .. zip with 1-based indices
+Ûg   .. get the first list that's unique
+‹    .. its first element, the 1-based index, is the answer
+};
+
+.. possible solution that doesn't work:
+{
+l¬μ"\d+"El¨Im»~\u+ßd*¨} .. as in level 1
+:¨$G  .. duplicate, flatten, sort and group
+φL(}  .. filter for groups that are >1 length
+¨     .. flatten
+&b,   .. intersect each group, and get indices where the intersection is nonzero
+      .. (this requires & be fixed (it doesn't work if elements are lists in v0.2.15)
+      .. and I think is also way too slow)
+.. do some other stuff that I'm not motivated to implement
+};

@@ -1,0 +1,34 @@
+l]$ε"\d+"El¨Im4>:LÎ+x}]μ2/(›\μ~Tl}¨‡ß}¨$‹_{GL_>r}×‹Þ .. 52 bytes
+
+{
+l]$ .. sort lines
+ε   .. for each line:
+  "\d+"El¨Im .. regex match runs of digits, flatten, convert to integers
+  4> .. take the [4:] slice
+     .. guard-beginning-shift rows have 2 numbers; the others have 1
+  :L .. compute the length
+  Î  .. is it 1?
+  +x .. concatenate if so
+}
+.. we now have many [min, id, min, min, ...] lists on the stack
+] .. collect it into a list
+μ    .. map across each pair:
+  2/ .. split into pairs again:
+     .. [[useless min, id], [min, min], [min, min]...]
+  (  .. uncons so: [[min, min], [min, min]...] [useless min, id]
+  ›\ .. extract that ID, swap it under: id, [[min, min], ...]
+  μ~Tl}¨ .. convert every pair to a half-open range, flatten
+  ‡ß .. make pairs with the id: [[id, min], ...]
+}
+¨  .. flatten again
+$  .. sort (lexicographically)
+‹_ .. the function to take the first element of a list
+{GL_>r} .. "group, take maximum by length"
+× .. do that twice, which works out:
+  ..
+  .. group (by id), take maximum by length: this leaves
+  .. [[id, min], ...] for only the ID of the guard most often asleep
+  ..
+  .. group (by everything), take maximum by length: this leaves [[id, min], ...] over and over
+‹Þ .. take an element and compute the product
+};

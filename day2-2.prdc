@@ -1,0 +1,20 @@
+l]²¨φ™ÛfLÎ}‹™Îf‹m .. 17 bytes
+.. (takes about a minute or two to run)
+
+{
+l] .. get lines
+²  .. square i.e. cartesian product with itself
+¨  .. flatten once
+φ  .. filter by the following function
+     ..   (which receives a length-2 list of two lines)
+  ™  ..   transpose, to get a list of pairs
+  Ûf ..   filter for pairs that are unique
+  L  ..   check the length
+  Î  ..   test if it's equal to 1
+}  .. (end filter)
+‹  .. take the first such pair of lines
+   .. (a γ block shortcut would shave a character here)
+™  .. transpose, to get a list of pairs of characters
+Îf .. filter for pairs that match
+‹m .. take the first character in each pair
+};

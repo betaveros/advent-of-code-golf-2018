@@ -1,0 +1,22 @@
+v¬1k*+s:U]zÛg‹ .. 14 bytes
+.. (takes a few seconds to run)
+
+{
+v¬  .. gather all values in standard input into a list
+1k* .. repeat this list by itself 1000 times
+    .. (slightly cheating since we can't know how many times it'd
+    .. take to loop, but I think taking the length would also have
+    .. worked, and would be the same number of bytes?)
++s  .. takes sums of prefix slices (also slightly cheating since
+    .. this doesn't include the starting 0)
+:U  .. duplicate and uniquify the copy
+]z  .. zip it with the original
+Ûg  .. get the first list with unique elements (the g trailer is
+    .. unstable, but I guess this is reasonable evidence that it's
+    .. pretty good)
+‹   .. get its first element
+};
+
+.. Having to use seven bytes :U]zÛg‹ in order to find the first repeated
+.. element of a list seems wrong, and is the kind of situation where I'd
+.. consider adding a new built-in somewhere.
