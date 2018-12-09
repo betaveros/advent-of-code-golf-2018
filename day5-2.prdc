@@ -1,0 +1,17 @@
+lUa{{Ucu-}bf0\εXc=k¸;_X?}]L(}ßŒ .. 31 bytes
+.. takes a few minutes
+
+{
+l  .. read input as lines
+Ua .. push the uppercase alphabet
+{  .. for each letter A in it:
+  { .. for each letter B in the line:
+    .. (A is bound, hence above B in the stack)
+    Ucu .. convert B, the second letter in the stack, to uppercase
+    -   .. subtract so that the result is truthy if different
+  }bf .. with that letter bound, filter the line for different letters
+  0\εXc=k¸;_X?}]L(
+  .. as in level 1, compute the number of remaining letters
+}ß .. bind the input line, map across the uppercase alphabet
+Œ  .. min
+};

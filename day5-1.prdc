@@ -1,0 +1,19 @@
+l0\εXc=k¸;_X?}]L( .. 17 bytes
+.. takes a few seconds
+
+{
+l  .. read input as lines
+0\ .. push 0, a sentinel value, and swap it under the line
+ε  .. for each character in the line:
+  Xc .. swap case (wow I'm glad I added this built-in!)
+  =k .. test for equality, without popping operands
+  .. now we have [..., swapped char, is equal?]
+  ¸  .. pop the second-from-top (swapped) char
+  ;_ .. if equal, we want to pop the top char;
+  X  .. if not equal we want the original character; this is implicitly
+     .. stored in X by the for-each loop
+  ?  .. perform the if.
+}
+]L .. gather the entire stack into a list, compute the length
+(  .. subtract one to get rid of the 0
+};
