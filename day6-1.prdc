@@ -1,0 +1,99 @@
+l]μ',-WIm}.E™εŒqÆ}{…d*¨}q‡d¦\{~…*¨}dÐ+{μ;9k:EεZ±zŠ<k;_{>kX&p¸u¸u\}?};} f$G}d+$‹_G{L(}-¨LmÆ .. 90 bytes!
+
+.. took 22 minutes on my machine, rip
+
+{
+l] .. lines
+μ  .. map lines:
+  ',- .. delete the comma
+  WIm .. convert to words and map to ints
+}
+.Dangers .. it's too hard to juggle the stack; let's assign it to a variable
+.. this is just E in the golfed version
+
+.. Finite areas must be in the minimal bounding box of the points; if an area
+.. contains a cell on the edge of that bounding box, it contains all cells on
+.. the ray emanating from that cell away from the bounding box.
+™ .. copy and transpose, so we have one list with two lists: all x's and all y's
+ε .. for each of those lists:
+  ŒqÆ .. compute the minimum and the maximum
+}
+.. so we have minx, maxx, miny, maxy on the stack
+.. first we're going to make the cartesian product of ranges:
+{
+  …d .. apply inclusive range twice, obtaining ranges [minx..maxx] [miny..maxy]
+  *¨ .. take cartesian product and flatten
+}q .. do all this but keep the result under the four extrema
+‡d .. Make two 2-length lists: we now have [minx, maxx], [miny, maxy]
+¦\ .. Duplicate both and swap
+{  .. This should consume [a, b] [c, d] and create [a,b]*[c..d].
+  ~  .. expand onto stack
+  …  .. compute inclusive range
+  *¨ .. cartesian product and flatten
+}d .. do this twice
+Ð  .. map with reverse (swap coordinates) in the higher list
++  .. concatenate the results
+
+.. We now have two lists on the stack, each with pairs of coordinates:
+.. the lower one is a list of all coordinates in the bounding box;
+.. the higher one is a list of all coordinates on the boundary of the bounding box.
+
+{ .. The below happens to both such lists:
+  μ .. Map this block, the goal of which is to find the closest point, or nothing if not:
+    .. (The messiness of the whole block means we probably want a "find a list of all minima/maxima" built-in)
+    ; .. Pop. Even though we're mapping we'll want this later, so we'll just use the X-stack,
+    .. which gives us access to nearby iteration variables.
+    9k: .. Accumulate a closest danger and a distance (assuming 9000 is an upper bound...)
+    .. (The initial value of the closest danger doesn't matter so we'll arbitrarily use the same huge number randomly.)
+    .. The closest danger will be a falsy sentinel if there's a tie.
+    Dangers ε .. For each point:
+      Z .. loop variable of outside loop, the coordinate under consideration
+      ±zŠ .. find absolute distance
+      <k .. if less: (stack: closest danger, closest distance, distance, greater)
+      ;_ .. then just pop the distance, nothing happened
+      {  .. else:
+        .. now the new distance is correct yay
+        .. "else"_debug
+        .. (closest danger, closest distance, distance)
+        >k .. if greater:
+        X  .. X (current danger)
+        &p .. boolean and
+        .. (old closest danger, old closest distance, correct distance, correct danger)
+        .. stack manipulation is painful
+        ¸u .. pop under, under
+        ¸u .. pop under, under
+        \ .. swap
+      }
+      ? .. do the if
+    }
+    ; .. leave the danger
+
+    .. this code was an earlier attempt and maybe more concise,, but the
+    .. extra loops seem like it will make things even more painfully slow
+    .. {±zŠ}b .. bind a "zip with absolute value, then sum" (i.e. compute Manhattan distance) block
+    .. Dangers .. push the list of points
+    .. \    .. swap: stack contains [list of points, abs-distance block]
+    .. Œq   .. find the Point with mininum distance, but keep the list and block, and push the answer under (it's a point)
+    .. %    .. map the block (wow I didn't know we still needed this)
+    .. :Œ   .. copy and find minimum
+    .. #    .. count how many times that minimum appears
+    .. Î    .. is it 1?
+    .. \{}? .. if so, otherwise do the empty block
+    .. idk I didn't check this
+  }
+  .. Because I probably chose the incorrect behavior of - on sequences as of
+  .. v0.2.15 (it subtracts them like Counters or multisets, not like sets,
+  .. which is just too fancy to be useful sadly)
+  .. I have to do some stupid hacking.
+   f .. filter by the identity function to get rid of the out the sentinels
+  $G .. sort and group
+}d .. ...double all of that so it happens to both lists.
++$‹_G .. Concatenate (the list of groups), sort, and group by first element.
+.. Groups that include any points from the boundary will result in groups of
+.. groups of length two, otherwise, of length 1.
+{L(}- .. Groups of two should be discarded.
+.. Now we have groups of one.
+¨ .. Flatten once.
+Lm .. map length
+Æ  .. find the maximum
+};
