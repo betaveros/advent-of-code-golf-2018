@@ -1,4 +1,4 @@
-l]$ε"\d+"El¨Im4>:LÎ+x}]μ2/(›\μ~Tl}¨‡ß}¨$‹_{GL_Æ}×‹Þ .. 51 bytes
+l]$ε"\d+"El¨Im4>:LÎ+x}]μ2/(›\μ~¨}¨‡ß}¨$‹_{GL_Æ}×‹Þ .. 50 bytes
 
 {
 l]$ .. sort lines
@@ -17,7 +17,7 @@ l]$ .. sort lines
      .. [[useless min, id], [min, min], [min, min]...]
   (  .. uncons so: [[min, min], [min, min]...] [useless min, id]
   ›\ .. extract that ID, swap it under: id, [[min, min], ...]
-  μ~Tl}¨ .. convert every pair to a half-open range, flatten
+  μ~¨}¨ .. convert every pair to a half-open range, flatten
   ‡ß .. make pairs with the id: [[id, min], ...]
 }
 ¨  .. flatten again
