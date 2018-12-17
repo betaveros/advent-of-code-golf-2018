@@ -1,4 +1,4 @@
-l]μ',-WIm}.E™εŒqÆ}{…d*¨}q‡d¦\{~…*¨}dÐ+{μ;9k:EεZ±zŠ<k;_{>kX&p¸u¸u\}?};} f$G}d+$‹_G{L(}-¨LmÆ .. 90 bytes!
+l]μ',-WIm}.E™εŒqÆ}{…d*¨}q‡d¦\{~…*¨}dÐ+{μ;9k:EεZ±zŠ<k;_{>kX&p¸u¸u\}?};} f$G}d+$‹_G«_-¨LmÆ .. 88 bytes!
 
 .. took 22 minutes on my machine, rip
 
@@ -91,7 +91,7 @@ l] .. lines
 +$‹_G .. Concatenate (the list of groups), sort, and group by first element.
 .. Groups that include any points from the boundary will result in groups of
 .. groups of length two, otherwise, of length 1.
-{L(}- .. Groups of two should be discarded.
+«_- .. Groups of two should be discarded.
 .. Now we have groups of one.
 ¨ .. Flatten once.
 Lm .. map length
