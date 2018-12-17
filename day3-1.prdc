@@ -1,4 +1,4 @@
-l¬μ"\d+"El¨Im»~\u+ßd*¨}¨$G{L(}# .. 31 bytes
+l¬μ"\d+"El¨Im»~\u+ßd*¨}¨$G«_# .. 29 bytes
 
 {
 l¬ .. get lines
@@ -28,5 +28,8 @@ l¬ .. get lines
 }
 ¨     .. flatten
 $G    .. Sort and group, as always
-{L(}# .. Count groups that are > 1 length
+«_#   .. Count groups that are > 1 length
+      .. This works because « takes the all-but-last slice of the list;
+      .. that slice is empty, and therefore falsy, iff the group is
+      .. length ≤ 1.
 };

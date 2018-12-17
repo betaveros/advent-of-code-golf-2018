@@ -1,4 +1,4 @@
-l¬μ"\d+"El¨Im~\u+ßd*¨\+bm}¨$«_GφL(}¨›mU$JÛg‹ .. 44 bytes!
+l¬μ"\d+"El¨Im~\u+ßd*¨\+bm}¨$«_G«_+¨›mU$JÛg‹ .. 43 bytes!
 
 {
 l¬
@@ -9,7 +9,9 @@ l¬
 }            .. as in level 1
 ¨    .. flatten; we now have a list of [x, y, id] triples
 $«_G .. sort, group by the all-but-first slice
-φL(} .. filter for groups that are >1 length
+«_+  .. filter for groups that are >1 length
+     .. same trick as in level 1, but shortsighted me made «f and »f both
+     .. built-ins, which they shouldn't be, and it's costing us a byte...
 ¨    .. flatten again, we now have a list of [x, y, id] triples
      .. where [x, y] are not unique
 ›m   .. extract the IDs
