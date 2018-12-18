@@ -1,4 +1,4 @@
-l]μ$GLm2 3‡#ßÂm}+zrÞ .. 20 bytes!
+l]μ$GLm2 3‡#ßÂm}ÁrÞ .. 19 bytes!
 
 {
 l]  .. get lines
@@ -10,6 +10,6 @@ l]  .. get lines
        .. appears in the list of lengths
   Âm   .. Above_zero_map
 }   .. end map
-+zr .. reduce with the add-zip function
+Ár  .. reduce with the vectorizing add function
 Þ   .. take the product
 };
