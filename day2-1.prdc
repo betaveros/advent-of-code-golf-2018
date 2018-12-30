@@ -1,11 +1,11 @@
-l]μ$GLm2 3‡#ßÂm}ÁrÞ .. 19 bytes!
+l]μ$GLmE4B#ßÂm}ÁrÞ .. 18 bytes!
 
 {
 l]  .. get lines
 μ   .. map this function over lines:
   $G   .. sort and group, which gives us chunks of equal letters
   Lm   .. map to lengths
-  2 3‡ .. construct the list [2 3]
+  E4B  .. construct the list [2 3], which is Eleven in Base 4
   #ß   .. Count_bindmap: for each of 2 and 3, count how many times it
        .. appears in the list of lengths
   Âm   .. Above_zero_map
@@ -13,3 +13,4 @@ l]  .. get lines
 Ár  .. reduce with the vectorizing add function
 Þ   .. take the product
 };
+
