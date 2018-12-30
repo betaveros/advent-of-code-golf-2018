@@ -5,7 +5,7 @@ This repository contains [golfed](https://en.wikipedia.org/wiki/Code_golf) solut
 
 (These are not the solutions I compete on the leaderboard with; I think there are enough repos with such solutions and my solutions wouldn't be that different. I have also not been careful about preserving my code for level 1 before doing level 2 of each day.)
 
-I could obviously cheat at golf by adding built-ins to Paradoc tailored to each challenge after seeing it, so my programs here ought to run on Paradoc version v0.2.15, which was pushed (way) before this year's Advent of Code. I will be using the results here to guide improving Paradoc in the future, though.
+I could obviously cheat at golf by adding built-ins to Paradoc tailored to each challenge after seeing it, so my programs here are all meant to run on Paradoc version v0.2.15, which was pushed (way) before this year's Advent of Code. I will be using the results here to guide improving Paradoc in the future, though. The programs also may not run on future versions.
 
 Note on byte count: Like a lot of the other golfing languages [seen on the Programming Puzzles & Code Golf StackExchange](https://codegolf.meta.stackexchange.com/questions/5878/what-character-encodings-may-a-submission-use/5879#5879), the byte counts here assume programs were encoded in the Paradoc code page. These programs will almost always take up more than the stated byte count as UTF-8 strings, and for the sake of easy viewability, they are UTF-8 encoded below and in the programs in this repository.
 
